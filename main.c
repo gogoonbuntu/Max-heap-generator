@@ -102,9 +102,42 @@ int retrf(void){
 }
 
 int keyf(void){
+	int chosen, newone, idx;
 	printf("\nEnter index of element: ");
+	scanf("%d", &chosen);
+	
+	i=1;
+	while(keys[i]!='\0'){
+		if(chosen==keys[i]){
+			idx = i;
+			break;
+		} else	i++;
+	}
+
+	if(i>size){
+		printf("%d does not exist.", chosen);
+		return 0;
+	}
 	
 	printf("\nEnter new key value: ");
+	scanf("%d", &newone);
+
+	i=1;
+	while(keys[i]!='\0'){
+		if(newone==keys[i]){
+			printf("key already exist.\n");
+			return 0;
+		}
+		i++;
+	}
+
+	keys[idx] = newone;
+	strcpyf(names[newone], names[chosen]);
+	strcpy(names[chosen], "");
+	if(size>1)
+	for(i=size/2; i>0; i--){
+		max_heapify(keys, i);
+	}
 }
 
 int printAllf(void){
@@ -112,7 +145,8 @@ int printAllf(void){
 	while(1){
 		if(keys[i]!='\0'){
 			printf("[");
-			printf("%s, %d", names[keys[i]], keys[i]);
+			int t = keys[i];
+			printf("%s, %d", names[t], t);
 			printf("]");
 			i++;
 		} else {
@@ -153,7 +187,6 @@ int max(int* a) {
 }
 
 void swap(int* a, int b, int c){
-	printf("swap!\n");
 	int t;
 	t = a[b];
 	a[b] = a[c];

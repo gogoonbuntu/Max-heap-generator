@@ -1,8 +1,6 @@
 #include <stdio.h>
 #include <ctype.h>
 #include <memory.h>
-#include <stdlib.h>
-#include <math.h>
 
 #define LEFT(i) (2*i)
 #define RIGHT(i) (LEFT(i)+1)
